@@ -12,31 +12,41 @@ public class ex6 {
         try {
             int n = scanner.nextInt();
             System.out.println(print(n));
-            scanner.nextLine();
+            //scanner.nextLine();
             scanner.close();
         } catch (InputMismatchException exception) {
             System.out.println("Неверный ввод. Требовалось ввести число!");
         }
     }
     public static String print(int n) {
-        StringBuilder sb = new StringBuilder();
-        int count = n;
-
-        while (n > 0) {
-            if (count != n) {
-                for (int i = 0; i < count-n-i; i++) {
+        if (n <= 0 || n%2 == 0) {
+            return null;
+        } else {
+            StringBuilder sb = new StringBuilder();
+            int count = 1;
+            while (count < n) {
+                for (int i = 0; i < n-count-i; i++) {
                     sb.append(" ");
                 }
+                for (int i = 0; i < count; i++) {
+                    sb.append("*");
+                }
+                sb.append("\n");
+                count +=2;
             }
-            for (int i = 0; i < n; i++) {
-               sb.append("*");
+            while (count > 0) {
+                if (count != n) {
+                    for (int i = 0; i < n-count-i; i++) {
+                        sb.append(" ");
+                    }
+                }
+                for (int i = 0; i < count; i++) {
+                    sb.append("*");
+                }
+                sb.append("\n");
+                count -=2;
             }
-            sb.append("\n");
-            n -=2;
+            return sb.toString();
         }
-
-
-
-        return sb.toString();
     }
 }
