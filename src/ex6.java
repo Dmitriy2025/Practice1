@@ -12,41 +12,29 @@ public class ex6 {
         try {
             int n = scanner.nextInt();
             System.out.println(print(n));
-            //scanner.nextLine();
             scanner.close();
         } catch (InputMismatchException exception) {
             System.out.println("Неверный ввод. Требовалось ввести число!");
         }
     }
+
     public static String print(int n) {
-        if (n <= 0 || n%2 == 0) {
+        if (n <= 0 || n % 2 == 0) {
             return null;
-        } else {
-            StringBuilder sb = new StringBuilder();
-            int count = 1;
-            while (count < n) {
-                for (int i = 0; i < n-count-i; i++) {
-                    sb.append(" ");
-                }
-                for (int i = 0; i < count; i++) {
-                    sb.append("*");
-                }
-                sb.append("\n");
-                count +=2;
-            }
-            while (count > 0) {
-                if (count != n) {
-                    for (int i = 0; i < n-count-i; i++) {
-                        sb.append(" ");
-                    }
-                }
-                for (int i = 0; i < count; i++) {
-                    sb.append("*");
-                }
-                sb.append("\n");
-                count -=2;
-            }
-            return sb.toString();
         }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < n; i += 2) {
+            int spaces = (n - i) / 2;
+            sb.append(" ".repeat(spaces));
+            sb.append("*".repeat(i));
+            sb.append("\n");
+        }
+        for (int i = n; i > 0; i -= 2) {
+            int spaces = (n - i) / 2;
+            sb.append(" ".repeat(spaces));
+            sb.append("*".repeat(i));
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
